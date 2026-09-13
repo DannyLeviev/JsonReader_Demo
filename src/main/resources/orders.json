@@ -1,0 +1,38 @@
+[
+  {
+    "order_id": 1,
+    "customer_id": 1,
+    "customer_name": "Russell Smith",
+    "loyalty_points": 5,
+    "order_items": [
+      { "product_id": 10, "product_name": "Portable Charger", "product_category": "Electronics", "unit_price": 49.99 },
+      { "product_id": 11, "product_name": "USB-C Cable", "product_category": "Electronics", "unit_price": 9.99 }
+    ]
+  },
+  {
+    "order_id": 2,
+    "customer_id": 2,
+    "customer_name": "Maria Gomez",
+    "loyalty_points": 12,
+    "order_items": [
+      { "product_id": 20, "product_name": "Yoga Mat", "product_category": "Fitness", "unit_price": 25.00 }
+    ]
+  },
+  {
+    "order_id": 3,
+    "customer_id": 1,
+    "customer_name": "Russell Smith",
+    "loyalty_points": 5,
+    "order_items": [
+      { "product_id": 30, "product_name": "Desk Lamp", "product_category": "Home", "unit_price": 19.50 },
+      { "product_id": 31, "product_name": "Notebook", "product_category": "Office", "unit_price": 3.99 }
+    ]
+  },
+  {
+    "order_id": 4,
+    "customer_id": 3,
+    "customer_name": "Wei Chen",
+    "loyalty_points": 2,
+    "order_items": []
+  }
+]
