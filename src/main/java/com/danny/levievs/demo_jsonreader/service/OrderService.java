@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 
@@ -25,23 +26,21 @@ public class OrderService {
     public List<Order> loadDataFromFile() {
 
         List<Order> orders;
+        long startTime = System.currentTimeMillis();
 
-        try {
+        Resource resource = new ClassPathResource("orders.json");
 
-            Resource resource = new ClassPathResource("orders.json");
-
+        try(InputStream inputStream = resource.getInputStream()) {
             orders = jacksonMapper.readValue(
-                    resource.getInputStream(),
+                    inputStream,
                     new TypeReference<>() {
                     });
 
         } catch (IOException e) {
-
-            log.error("Error reading orders.json file", e);
+            log.error("Error reading orders.json file. Details: {}", e.getMessage());
             return Collections.emptyList();
-
         }
-        log.info("orders loaded {}", orders);
+        log.info("{} orders loaded successfully. Total load time {}", orders.size(),  System.currentTimeMillis() - startTime + "msec.");
         return orders;
     }
 
@@ -73,7 +72,6 @@ public class OrderService {
 
 
         orders.forEach(order -> {
-
             Double sumSpend = order.order_items()
                     .stream()
                     .mapToDouble(OrderItem::unit_price)
