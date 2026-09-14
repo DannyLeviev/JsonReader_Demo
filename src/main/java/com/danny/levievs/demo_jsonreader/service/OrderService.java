@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -104,5 +105,21 @@ public class OrderService {
         customerMaxOrderItem.forEach((s, totalSpend) -> System.out.println(s + " " + totalSpend));
 
         return customerMaxOrderItem;
+    }
+
+    public void saveOrdersToFile(List<Order> orders, String filePath) {
+
+        if (Objects.isNull(orders)) {
+            log.warn("No orders to write — skipping file output.");
+            return;
+        }
+
+        try {
+            jacksonMapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(new File(filePath), orders);
+            log.info("Wrote {} orders to {}", orders.size(), filePath);
+        } catch (IOException e) {
+            log.error("Error writing orders to file {}", filePath, e);
+        }
     }
 }

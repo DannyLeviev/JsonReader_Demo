@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -26,6 +27,9 @@ public class DemoJsonReaderApplication {
         orderService.printFirstCustomersOrderSize(orders);
 
         orderService.getTotalSpendByCustomer(orders);
+
         orderService.getMostExpensiveItemByCustomer(orders);
+
+        orderService.saveOrdersToFile(orders, "src/main/resources/orders-export-" + LocalDate.now() + ".json");
     }
 }
